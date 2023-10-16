@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixa Eletrônico</title>
+    <style>
+        .body{
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var saldo = 10000
+        var nome = prompt("Informe o seu nome:");
+        alert(`Olá ${nome.toUpperCase()}, é um prazer ter você aqui`);
+
+        
+        function verificarSenha(){
+            var senha = parseInt(prompt("Informe a sua senha:"));
+            if (senha === 3589){
+            return true;
+        } else {
+            alert("Senha incorreta");
+            verificarSenha();
+        }
+        }
+
+        inicio();
+        function inicio(){
+            var escolha = parseInt(prompt('Selecione um número de acordo com a opção desejada:\n 1.) Saldo\n 2.) Extrato\n 3.) Saque\n 4.) Depósito\n 5.) Transferencia\n 6.) Sair'));
+            switch (escolha){
+                case 1: 
+                    verSaldo()
+                    break;
+                case 2:
+                    extrato()
+                    break;
+                case 3:
+                    sacar()
+                    break;
+                case 4:
+                    depositar()
+                    break;
+                case 5:
+                    transferir()
+                    break;
+                case 6:
+                    sair()
+                    break;
+                default:
+                    erro()                  
+            }
+        }
+        
+        function verSaldo(){
+            verificarSenha();
+
+			alert(`Seu saldo atual é R$${saldo}`);
+			inicio();
+        }
+        
+
+        function sacar(){
+            verificarSenha();
+
+            var saque = parseFloat(prompt(`Qual valor você deseja sacar?`))
+
+            if ( saque > saldo || saque <= 0){
+                alert(`Operação não autorizada`)
+                sacar();
+            } else {
+                saldo -= saque
+                alert(`Saque de R$${saque} realizado com sucesso! \n\nSeu saldo é R$${saldo} `)
+            } 
+            inicio();
+        }
+
+        function depositar(){
+            verificarSenha();
+
+            var dNomeBeneficiario = prompt(`Informe o nome completo do beneficiário:`)
+            var dFormaDeposito = prompt(`A forma de deposito é cheque ou dinheiro?`)
+            var dTipoConta = prompt(`Poupança ou corrente?`)
+            var dAgencia = parseInt(prompt(`Número da agência:`))
+            var dConta = parseInt(prompt(`Número da conta e o dv:`))
+            var deposito = parseFloat(prompt(`Qual valor você deseja depositar?`))
+
+            if (isNaN(deposito) || deposito === " "){
+                alert(`Caractéres inválidos. Por favor, informe um número`)
+                depositar();
+            } else if(deposito <= 0){
+                alert(`Operação não autorizada. Valor inválido`)
+                depositar();
+            } else{
+                var confirmi = confirm(`Confirme as informações abaixo para finalizar o deposito\n\n Nome: ${dNomeBeneficiario}\n Forma de deposito: ${dFormaDeposito}\n Tipo de conta: ${dTipoConta}\n Agência: ${dAgencia}\n Conta: ${dConta}\n\n No valor de R$${deposito}`) 
+
+                if (confirmi === true){
+                        saldo += deposito
+                        alert(`Depósito realizado com sucesso!\n\n Seu saldo atual é de R$${saldo}`)
+                        inicio(); 
+                } else {
+                    depositar();
+                } 
+            }     
+        }
+            
+
+        function transferir(){
+            verificarSenha();
+            
+            var banco = prompt(`Para qual intituição você deseja tranferir?`)
+            var nomeBeneficiario = prompt(`Informe o nome completo do beneficiário:`)
+            var cpf = prompt(`CPF:`)
+            var tipoConta = prompt(`Poupança ou corrente?`)
+            var agencia = parseInt(prompt(`Número da agência:`))
+            var conta = parseInt(prompt(`Número da conta e o dv:`))
+            var valorTransferencia = parseFloat(prompt(`Qual valor você deseja tranferir?`))
+            
+                if (isNaN(valorTransferencia) || valorTransferencia === " ") {
+                    alert("Caractéres inválidos. Por favor, informe um número.")
+                    transferir();
+                } else if (valorTransferencia > saldo || valorTransferencia <= 0 ){
+                    alert(`Operação não autorizada`)
+                } else {
+                    var confirmacao = confirm(`Confirme as informações abaixo para finalizar a tranferência\n\n Nome: ${nomeBeneficiario}\n CPF: ${cpf}\n Banco: ${banco}\n Agência: ${agencia}\n Conta: ${tipoConta}\n\n No valor de R$${valorTransferencia}`)   
+                    if (confirmacao === true){
+                        saldo -= valorTransferencia
+                        alert(`Tranferência realizada com sucesso \nDe ${nome} para ${nomeBeneficiario} \n\n Seu saldo atual é de R$${saldo}`)
+                        inicio(); 
+                    } else {
+                        tranferir();
+                    }
+                }
+        } 
+            
+        function extrato(){
+            verificarSenha();
+
+            alert(`Lojas Americanas -R$40,00 \nCinermark -R$70,00 \nDaianaVaz Studio -R$400,00 \nSalário +4,000,00 \n `)
+            inicio();
+        }
+
+        function sair() {
+            var confirma = confirm("Você deseja sair?");
+
+            if (confirma === true){
+                alert(`Agradecemos por usar os serviços do caixa eletrônico ${nome}, foi um prazer ter você por aqui!`)
+                window.close();
+            } else {
+            inicio();
+            }
+        }
+
+        function erro() {
+			alert('Por favor, informe um número entre 1 e 6.');
+			inicio();
+		}
+
+
+    </script>
+</body>
+</html>
