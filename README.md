@@ -6,6 +6,7 @@
 ## 🏦 Sobre
 
 Bem-vindo ao Banco Eustaquio, um sistema de caixa eletrônico **desenvolvido inteiramente em JavaScript**. Este projeto é uma implementação simplificada de um caixa eletrônico bancário que permite aos usuários realizar operações comuns, como saques, depósitos, consultas de saldo e tranferência.
+<hr>
 
 ![image](https://github.com/YaraEustaquio/CaixaEletronico/assets/51837067/1efdcb31-1a60-46b4-bcdb-5c7da060df9c)
 ![image](https://github.com/YaraEustaquio/CaixaEletronico/assets/51837067/e1cb7187-f3b7-42fe-a10c-f3cc35f8e5ff)
